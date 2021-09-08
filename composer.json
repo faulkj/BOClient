@@ -1,0 +1,29 @@
+{
+   "name" : "faulkj/boclient",
+   "description" : "Business Objects web services client",
+   "keywords" : [
+      "client",
+      "business objects",
+      "web service",
+      "epic"
+   ],
+   "authors" : [{
+         "name" : "Joshua Faulkenberry",
+         "email" : "j@joshuafaulkenberry.com"
+      }
+   ],
+   "type" : "project",
+   "require" : {
+      "php" : ">=7.0",
+      "faulkj/webclient" : "1.*"
+   },
+   "require-dev" : {
+      "phpunit/phpunit" : "9.*"
+   },
+   "autoload" : {
+      "psr-4" : {
+         "FaulkJ\\BOClient\\" : "src/"
+      }
+   },
+   "homepage" : "https://github.com/faulkj/BOClient/"
+}
