@@ -12,6 +12,7 @@
          "email" : "j@joshuafaulkenberry.com"
       }
    ],
+   "license" : "Unlicense",
    "type" : "project",
    "require" : {
       "php" : ">=7.0",
