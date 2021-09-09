@@ -13,7 +13,7 @@
       }
    ],
    "license" : "Unlicense",
-   "type" : "project",
+   "type" : "library",
    "require" : {
       "php" : ">=7.0",
       "faulkj/webclient" : "1.*"
