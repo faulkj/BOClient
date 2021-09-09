@@ -1,6 +1,6 @@
 <?php namespace FaulkJ\BOClient;
    /*
-    * Interface Class for Business Objects v2.0
+    * Client Class for Business Objects web services v2.0
     *
     * Kopimi 2021 Joshua Faulkenberry
     * Unlicensed under The Unlicense
@@ -13,22 +13,22 @@
       const   version    = "2.0";
 
       private $authToken = null;
-      private $debug     = false;
+      private $debug     = true;
       private $webClient;
       private $user;
       private $ass;
 
       public function __construct(WebClient $webClient, $user, $pass, $debug = false) {
-         $this->debug = $debug != false;
+         $this->debug     = $debug != false;
          $this->webClient = $webClient->debug($this->debug);
-         $this->user  = $user;
-         $this->pass  = $pass;
+         $this->user      = $user;
+         $this->pass      = $pass;
       }
 
       public function query($service, $options = null) {
          $req = $this->webClient->request([
             "target"  => $service,
-            "headers" => $this->authToken ? "X-SAP-LogonToken: '{$this->authToken}'" : null,
+            "headers" => $this->authToken ? "X-SAP-LogonToken: \"{$this->authToken}\"" : null,
             "method"  => isset($options["method"]) ? $options["method"] : "GET",
             "qs"      => isset($options["qs"]) ? $options["qs"] : null,
             "data"    => isset($options["data"]) ? $options["data"] : null,
@@ -36,7 +36,10 @@
             "accept"  => "application/xml"
          ]);
 
-         if($req->code != 200) trigger_error("Query failed:\n\n{$req->body}");
+         if($req->code != 200) {
+            trigger_error("Query failed:\n\n{$req->body}");
+            return null;
+         }
 
          $xml = preg_replace('/xmlns[^=]*="[^"]*"/i', '', $req->body);
          return $xml;
@@ -68,15 +71,16 @@
       }
 
       public function logoff($callback=null) {
-         $this->query("logoff", array(
+         $this->query("logoff", [
             "method" => "POST"
-         ));
+         ]);
          $this->authToken = null;
          if(is_callable($callback)) $callback();
          return $this;
       }
 
-      public function debug($debug) {
+      public function debug($debug = null) {
+         if($debug === null) return $this->debug;
          $this->debug = $debug != false;
          return $this;
       }
