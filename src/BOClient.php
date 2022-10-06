@@ -1,16 +1,14 @@
-<?php namespace FaulkJ\BOClient;
+<?php namespace FaulkJ;
    /*
-    * Client Class for Business Objects web services v2.0
+    * Client Class for Business Objects web services v2.1
     *
-    * Kopimi 2021 Joshua Faulkenberry
+    * Kopimi 2022 Joshua Faulkenberry
     * Unlicensed under The Unlicense
     * http://unlicense.org/
     */
 
-   use \FaulkJ\WebClient\WebClient;
-
    class BOClient {
-      const   version    = "2.0";
+      const   version    = "2.1";
 
       private $authToken = null;
       private $debug     = true;
