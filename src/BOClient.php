@@ -2,7 +2,7 @@
    /*
     * Client Class for Business Objects web services v2.1
     *
-    * Kopimi 2022 Joshua Faulkenberry
+    * Kopimi 2023 Joshua Faulkenberry
     * Unlicensed under The Unlicense
     * http://unlicense.org/
     */
