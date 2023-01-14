@@ -14,9 +14,9 @@
       private $debug     = true;
       private $webClient;
       private $user;
-      private $ass;
+      private $pass;
 
-      public function __construct(WebClient $webClient, $user, $pass, $debug = false) {
+      public function __construct(WebClient $webClient, string $user, string $pass, $debug = false) {
          $this->debug     = $debug != false;
          $this->webClient = $webClient->debug($this->debug);
          $this->user      = $user;
@@ -39,7 +39,7 @@
             return null;
          }
 
-         $xml = preg_replace('/xmlns[^=]*="[^"]*"/i', '', $req->body);
+         $xml = preg_replace('/xmlns[^=]*="[^"]*"/i', '', $req->body || "");
          return $xml;
       }
 
